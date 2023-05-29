@@ -1,38 +1,442 @@
-.App {
+/* "*" belgisi barcha elementlarga murojaatni anglatadi*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+/*bloklarning width ni o`zgarishini verstka uchun qulay qilib beradi*/
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+/*quyidagi teglarni blok qilib beradi*/
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+/*elementlarning hossalarini barcha brauzerlar uchun mo`tadillashtirib beradi*/
+html,
+body {
+  font-family: "Lato", sans-serif;
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjusst: 100%;
+  -moz-text-size-adjusst: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+/*quyidagi teglarning shriftlar oilasini vorislashi taminlanadi*/
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+/*turli brauzerlarning o`ziga xos hususiyatlarini olib tashlash*/
+input:-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button:-moz-focus-innesr {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+/*sarlavharning odatdagi stillarini nullashtirish*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.wrapper {
+  height: 100vh;
+  background: #f5f5f5;
+}
+.myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 68px;
+  color: #013ca6;
+  margin-bottom: 34px;
+  @media (max-width: 700px) {
+    font-size: 45px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 450px) {
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.block {
+  background: #fbfbfb;
+  border-radius: 12px;
+  padding: 32px;
+  min-height: 350px;
+  position: relative;
+  @media (max-width: 700px) {
+    padding: 25px;
+  }
+  @media (max-width: 450px) {
+    padding: 17px;
+  }
+}
+
+.form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 11px;
 }
 
-.App-link {
-  color: #61dafb;
+.empty {
+  display: none;
+  text-align: center;
+  font-size: 35px;
+  line-height: 50px;
+  font-weight: 600;
+  margin-top: 8%;
+  color: red;
 }
 
-@keyframes App-logo-spin {
-  from {
+.input {
+  padding: 0 16px;
+  background: #ffffff;
+  border: 1px solid #e5e9eb;
+  border-radius: 6px;
+  width: 320px;
+  height: 40px;
+  box-shadow: 0 0 10px black;
+  @media (max-width: 700px) {
+    width: 260px;
+    height: 35px;
+  }
+  @media (max-width: 450px) {
+    width: 220px;
+    height: 30px;
+  }
+}
+.input[type="text"] {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.shakeable {
+  animation: shake 0.4s;
+  /* // border: 2px solid red;
+      // box-shadow: 3px 3px 3px red;
+      // transition: all 0.1s; */
+}
+
+@keyframes shake {
+  0% {
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    transform: rotate(4deg);
   }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.filter {
+  margin-bottom: 10px;
+}
+.add {
+  width: 60px;
+  height: 40px;
+  background: #4094f7;
+  border-radius: 6px;
+  color: white;
+  margin-left: 12px;
+  &:hover {
+    transition: 1s;
+    background-color: #1252a5;
+  }
+  @media (max-width: 700px) {
+    width: 50px;
+    height: 35px;
+  }
+  @media (max-width: 450px) {
+    width: 50px;
+    height: 33px;
+  }
+}
+
+.todosList::-webkit-scrollbar {
+  display: none;
+}
+.todosList {
+  box-sizing: border-box;
+  border: none;
+  position: relative;
+  max-height: 200px;
+  max-width: 395px;
+  margin-bottom: 16px;
+  @media (min-height: 100px) {
+    overflow-y: auto;
+  }
+}
+
+.todo:last-child {
+  margin-bottom: 21px;
+}
+
+.save {
+  display: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: 66%;
+  @media (max-width: 700px) {
+    margin-left: 64.5%;
+  }
+  @media (max-width: 450px) {
+    margin-left: 64.5%;
+  }
+}
+.cancel {
+  display: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: 72.5%;
+  @media (max-width: 700px) {
+    margin-left: 71.5%;
+  }
+  @media (max-width: 450px) {
+    margin-left: 71.5%;
+  }
+}
+.save:hover {
+  transition: 0.5s;
+  width: 25px;
+  height: 25px;
+  background-color: #111214;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.cancel:hover {
+  transition: 0.5s;
+  width: 25px;
+  height: 25px;
+  background-color: #111214;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+  margin-left: 2.5px;
+  gap: 10px;
+  padding: 0 24px;
+  width: 386px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px black;
+  margin-bottom: 12px;
+  @media (max-width: 700px) {
+    margin-right: 2px;
+    width: 317px;
+    height: 40px;
+  }
+  @media (max-width: 450px) {
+    width: 280px;
+    height: 35px;
+  }
+}
+
+.lineThrough {
+  text-decoration: line-through;
+}
+.todo_input {
+  flex-grow: 1;
+}
+.todo_input[type="text"] {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.edit {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: 72.5%;
+}
+.edit:hover {
+  transition: 0.5s;
+  width: 25px;
+  height: 25px;
+  background-color: #111214;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.delete {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: 81%;
+}
+.delete:hover {
+  transition: 0.5s;
+  width: 25px;
+  height: 25px;
+  background-color: #111214;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.clear {
+  cursor: pointer;
+  text-align: center;
+  padding-top: 0.7%;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.006em;
+  color: #013ca6;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media (max-width: 450px) {
+    padding-top: 0.1%;
+  }
+}
+
+.clear {
+  width: 10em;
+  position: absolute;
+  bottom: 10px;
+  left: 33%;
+  height: 2.2em;
+  border: 3px ridge #013ca6;
+  outline: none;
+  background-color: transparent;
+  transition: 1s;
+  border-radius: 0.3em;
+  font-size: 16px;
+  font-weight: bold;
+  @media (max-width: 700px) {
+    bottom: 5px;
+    left: 30%;
+  }
+  @media (max-width: 450px) {
+    height: 1.7em;
+    top: 90%;
+    left: 26%;
+  }
+}
+
+.clear::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.clear::before {
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  transition: 0.5s;
+}
+
+.clear:hover::before,
+.clear:hover::after {
+  transform: scale(0);
+}
+
+.clear:hover {
+  box-shadow: inset 0px 0px 25px #0b6ee7;
+}
+
+.input {
+  /* // border: none; */
+  outline: none;
+  padding: 1em;
+  background-color: #ffffff;
+  transition: 300ms ease-in-out;
+}
+
+.input:focus {
+  background-color: rgb(252, 250, 250);
+  transform: scale(1.02);
+  box-shadow: 13px 13px 10px #969696, -13px -13px 10px #ffffff;
 }

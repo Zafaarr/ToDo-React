@@ -1,0 +1,14 @@
+.todosList::-webkit-scrollbar {
+  display: none;
+}
+.todosList {
+//   border: 1px solid red;
+  box-sizing: border-box;
+  position: relative;
+  max-height: 235px;
+  max-width: 390px;
+  margin-bottom: 15px;
+  @media (min-height: 100px) {
+    overflow-y: auto;
+  }
+}

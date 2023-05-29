@@ -1,0 +1,20 @@
+.pagination {
+  position: absolute;
+  top: 80%;
+  margin-left: 35%;
+  display: flex;
+  gap: 20px;
+  text-align: center;
+}
+
+.count {
+  cursor: pointer;
+  border: 1px solid black;
+  font-size: 17px;
+}
+
+.currentStep {
+  cursor: pointer;
+  border: 1px solid black;
+  font-size: 17px;
+}

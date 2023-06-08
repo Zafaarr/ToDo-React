@@ -74,13 +74,13 @@ function TodoItem({ setTodos, item, index, firstIndex }) {
   // };
 
   const checkBoxHandle = (id) => {
-    // setTodos((old) => {
-    //   return old.map((el) =>
-    //     el.id === id ? { ...el, isDone: !el.isDone } : el
-    //   );
-    // });
+    setTodos((old) => {
+      return old.map((el) =>
+        el.id === id ? { ...el, isDone: !el.isDone } : el
+      );
+    });
     console.log(id);
-    dispatch(checkBoxActionCreator(id));
+    // dispatch(checkBoxActionCreator(id));
   }; // checkBoxni vslusini o`zgartirish uchun
 
   return (

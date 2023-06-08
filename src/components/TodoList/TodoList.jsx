@@ -7,14 +7,14 @@ import style from "./TodoList.module.scss";
 export default function TodoList() {
   // const todos = useSelector((state) => state.todos);
 
-  const { todos, filterByStatus, filteredPages, status, firstIndex } =
+  const { todos, setTodos, filterByStatus, filteredPages, status, firstIndex } =
     useContext(Context);
 
   return (
     <ul className={style.todosList}>
       {filteredPages(filterByStatus(todos, status)).map((item, index) => (
         <TodoItem
-          // setTodos={setTodos}
+          setTodos={setTodos}
           key={item.id}
           item={item}
           index={index}

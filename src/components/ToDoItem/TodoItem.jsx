@@ -11,7 +11,7 @@ import "boxicons";
 import { useMutation } from "react-query";
 // import axios from "axios";
 import { todosServices } from "../../API/todosServices";
-import { checkBoxActionCreator } from "../../Redux/TodosReducer";
+import { checkBoxActionCreator, deleteActionCreator, saveActionCreator, setTodosActionCreator } from "../../Redux/TodosReducer";
 import { useDispatch } from "react-redux";
 
 // const BEZ_URL = "https://6467044d2ea3cae8dc23b733.mockapi.io/api/todos";
@@ -31,26 +31,26 @@ function TodoItem({ setTodos, item, index, firstIndex }) {
     inputElement.current.focus();
   };
 
-  const saveHandle = useMutation(todosServices.update, {
-    onSuccess: ({ value }) => {
-      setIsDisabled(true);
-      inputElement.current.disabled = true;
-      setValue(value);
-    },
-  });
+  // const saveHandle = useMutation(todosServices.update, {
+  //   onSuccess: ({ value }) => {
+  //     setIsDisabled(true);
+  //     inputElement.current.disabled = true;
+  //     setValue(value);
+  //   },
+  // });
 
-  // const saveHandle = (id) => {
-  //   // todosServices
-  //   //   .update(id, { value: value })
-  //   //   .then((response) => {
-  //   //     console.log(response.data);
-  //   //   })
-  //   //   .catch((err) => console.log(err));
-  //   // dispatch(saveActionCreator(id, value));
-  //   setIsDisabled(true);
-  //   inputElement.current.disabled = true;
-  //   // setTodos((el) => (el.id === id ? { ...el, value } : el));
-  // };
+  const saveHandle = (id) => {
+    todosServices
+      .update(id, { value: value })
+      .then((response) => {
+        // console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+    dispatch(saveActionCreator(id, value));
+    setIsDisabled(true);
+    inputElement.current.disabled = true;
+    setTodos((el) => (el.id === id ? { ...el, value } : el));
+  };
 
   const cancelHandle = () => {
     setIsDisabled(true);
@@ -58,20 +58,21 @@ function TodoItem({ setTodos, item, index, firstIndex }) {
     inputElement.current.disabled = true;
   };
 
-  const deletePost = useMutation((id) => {
-    return todosServices.delete(id);
-  });
-  // const deleteHandle = (id) => {
-  // todosServices.delete(id).then(() => {
-  //   todosServices.get().then((response) => {
-  //     dispatch(setTodosActionCreator(response.data.reverse()));
-  //   });
+  // const deletePost = useMutation((id) => {
+  //   return todosServices.delete(id);
   // });
-  // dispatch(deleteActionCreator(id));
-  // setTodos((old) => {
-  //   return old.filter((el) => el.id !== id);
-  // });
-  // };
+
+  const deleteHandle = (id) => {
+    todosServices.delete(id).then(() => {
+      todosServices.get().then((response) => {
+        dispatch(setTodosActionCreator(response.data.reverse()));
+      });
+    });
+    dispatch(deleteActionCreator(id));
+    setTodos((old) => {
+      return old.filter((el) => el.id !== id);
+    });
+  };
 
   const checkBoxHandle = (id) => {
     setTodos((old) => {
@@ -105,7 +106,7 @@ function TodoItem({ setTodos, item, index, firstIndex }) {
         {!isDisabled ? (
           <>
             <div
-              onClick={() => saveHandle.mutate(item.id, item.value)}
+              onClick={() => saveHandle(item.id, item.value)}
               className={style.save}
             >
               <box-icon name="save"></box-icon>
@@ -119,10 +120,7 @@ function TodoItem({ setTodos, item, index, firstIndex }) {
             <box-icon name="pencil"></box-icon>
           </div>
         )}
-        <div
-          onClick={() => deletePost.mutate(item.id)}
-          className={style.delete}
-        >
+        <div onClick={() => deleteHandle(item.id)} className={style.delete}>
           <box-icon name="trash"></box-icon>
         </div>
       </li>

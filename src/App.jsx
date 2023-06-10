@@ -103,13 +103,6 @@ export function App() {
           <Title text="To Do list APP" />
           <div className="block">
             <Form />
-            <input
-              type="text"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              className="searchInput"
-              placeholder="Search Input"
-            />
             <div className="filter">
               Filterd by status:
               <select
